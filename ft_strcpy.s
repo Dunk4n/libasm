@@ -1,30 +1,34 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strlen.s                                        :+:      :+:    :+:    #
+#    ft_strcpy.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/26 08:58:39 by niduches          #+#    #+#              #
-#    Updated: 2019/11/26 18:10:46 by niduches         ###   ########.fr        #
+#    Created: 2019/11/26 18:07:49 by niduches          #+#    #+#              #
+#    Updated: 2019/11/26 18:07:59 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_strlen
+global _ft_strcpy
 
-; int ft_strlen(char *);
-_ft_strlen:
+;char	*strcpy(char *, const char *)
+_ft_strcpy:
+	push rbx
 	push rcx
-	xor rcx, rcx
-
-strlen_next:
-	cmp [rdi + rcx], byte 0
-	jz strlen_end
+	mov rbx, 0
+	mov rcx, 0
+strcpy_next:
+	cmp [rsi + rcx], byte 0
+	jz strcpy_end
+	mov bl, [rsi + rcx]
+	mov byte [rdi + rcx], bl
 	inc rcx
-	jmp strlen_next
+	jmp strcpy_next
 
-strlen_end:
-	mov rax, rcx
-
+strcpy_end:
+	mov byte [rdi + rcx], 0
 	pop rcx
+	pop rbx
+	mov rax, rdi
 	ret
