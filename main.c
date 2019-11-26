@@ -23,7 +23,7 @@ int		main(int ac, char **av)
 {
 	if (ac < 3)
 		return (0);
-	printf("moi [%d]\n", ft_strcmp(av[1], av[2]));
+	printf("moi [%d]\n", (char)ft_strcmp(av[1], av[2]));
 	printf("rel [%d]\n", strcmp(av[1], av[2]));
 
 	(void)ac;
