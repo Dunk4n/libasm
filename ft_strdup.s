@@ -1,37 +1,40 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strcpy.s                                        :+:      :+:    :+:    #
+#    ft_strdup.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/26 18:07:49 by niduches          #+#    #+#              #
-#    Updated: 2019/11/27 17:59:30 by niduches         ###   ########.fr        #
+#    Created: 2019/11/27 18:03:18 by niduches          #+#    #+#              #
+#    Updated: 2019/11/27 18:03:20 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_strcpy
+extern _malloc
+extern _ft_strlen
+extern _ft_strcpy
+global _ft_strdup
 
-;char	*strcpy(char *, const char *)
-_ft_strcpy:
-	push rbx
-	push rcx
+; int ft_strdup(const char *);
+_ft_strdup:
+	push rdi
 
-	mov rbx, 0
-	mov rcx, 0
-strcpy_next:
-	cmp [rsi + rcx], byte 0
-	jz strcpy_end
-	mov bl, [rsi + rcx]
-	mov byte [rdi + rcx], bl
-	inc rcx
-	jmp strcpy_next
+	call _ft_strlen
+	mov rdi, rax
+	inc rdi
+	call _malloc
+	cmp rax, 0
+	jz ft_strdup_end
 
-strcpy_end:
-	mov byte [rdi + rcx], 0
+	pop rdi
+	push rdi
+	push rsi
 
-	pop rcx
-	pop rbx
+	mov rsi, rdi
+	mov rdi, rax
+	call _ft_strcpy
 
-	mov rax, rdi
+	pop rsi
+ft_strdup_end:
+	pop rdi
 	ret

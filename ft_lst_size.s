@@ -1,37 +1,29 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strcpy.s                                        :+:      :+:    :+:    #
+#    ft_lst_size.s                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/26 18:07:49 by niduches          #+#    #+#              #
-#    Updated: 2019/11/27 17:59:30 by niduches         ###   ########.fr        #
+#    Created: 2019/11/27 19:55:22 by niduches          #+#    #+#              #
+#    Updated: 2019/11/27 19:59:17 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_strcpy
+global _ft_list_size
 
-;char	*strcpy(char *, const char *)
-_ft_strcpy:
-	push rbx
-	push rcx
+; int     ft_list_size(t_list *begin_list)
+_ft_list_size:
+	push rdi
 
-	mov rbx, 0
-	mov rcx, 0
-strcpy_next:
-	cmp [rsi + rcx], byte 0
-	jz strcpy_end
-	mov bl, [rsi + rcx]
-	mov byte [rdi + rcx], bl
-	inc rcx
-	jmp strcpy_next
+	xor rax, rax
+ft_list_size_while:
+	cmp rdi, 0
+	jz ft_list_size_end
+	inc rax
+	mov rdi, [rdi + 8]
+	jmp ft_list_size_while
 
-strcpy_end:
-	mov byte [rdi + rcx], 0
-
-	pop rcx
-	pop rbx
-
-	mov rax, rdi
+ft_list_size_end:
+	pop rdi
 	ret
