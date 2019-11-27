@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/26 08:50:51 by niduches          #+#    #+#              #
-#    Updated: 2019/11/26 20:17:52 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/27 14:03:53 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,12 @@ CCFLAGS = -Wall -Wextra -fomit-frame-pointer
 NASM = nasm
 NASMFLAGS = -f macho64 #elf64
 
-SRC =	test.s		\
-		ft_strlen.s	\
-		ft_strcpy.s	\
-		ft_strcmp.s	\
+SRC =	ft_strlen.s		\
+		ft_strcpy.s		\
+		ft_strcmp.s		\
+		ft_write.s		\
+		ft_read.s		\
+		ft_atoi_base.s	\
 
 NAME = libasm.a
 

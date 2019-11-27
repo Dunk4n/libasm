@@ -1,29 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strcmp.s                                        :+:      :+:    :+:    #
+#    ft_read.s                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/27 11:59:21 by niduches          #+#    #+#              #
-#    Updated: 2019/11/27 11:59:22 by niduches         ###   ########.fr        #
+#    Created: 2019/11/27 12:31:40 by niduches          #+#    #+#              #
+#    Updated: 2019/11/27 12:39:08 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_strcmp
+global _ft_read
 
-;int	ft_strcmp(const char *, const char *)
-_ft_strcmp:
-ft_strcmp_loop:
-	mov al, byte [rdi]
-	cmp al, byte [rsi]
-	jnz ft_strcmp_end
-	cmp al, 0
-	jz ft_strcmp_end
-	inc rdi
-	inc rsi
-	jmp ft_strcmp_loop
-
-ft_strcmp_end:
-	sub al, byte [rsi]
+;ssize_t	ft_read(int, const void *, size_t)
+_ft_read:
+	mov rax, 0x2000003
+	syscall
 	ret

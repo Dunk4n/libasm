@@ -1,29 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    ft_strcmp.s                                        :+:      :+:    :+:    #
+#    ft_write.s                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/27 11:59:21 by niduches          #+#    #+#              #
-#    Updated: 2019/11/27 11:59:22 by niduches         ###   ########.fr        #
+#    Created: 2019/11/27 11:59:04 by niduches          #+#    #+#              #
+#    Updated: 2019/11/27 12:34:04 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-global _ft_strcmp
+global _ft_write
 
-;int	ft_strcmp(const char *, const char *)
-_ft_strcmp:
-ft_strcmp_loop:
-	mov al, byte [rdi]
-	cmp al, byte [rsi]
-	jnz ft_strcmp_end
-	cmp al, 0
-	jz ft_strcmp_end
-	inc rdi
-	inc rsi
-	jmp ft_strcmp_loop
-
-ft_strcmp_end:
-	sub al, byte [rsi]
+;ssize_t	ft_write(int, const void *, size_t)
+_ft_write:
+	mov rax, 0x2000004
+	syscall
 	ret
