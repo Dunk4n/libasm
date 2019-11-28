@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/26 08:50:51 by niduches          #+#    #+#              #
-#    Updated: 2019/11/27 20:08:27 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/28 11:07:15 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC =	ft_strlen.s				\
 		ft_list_push_front.s	\
 		ft_list_size.s			\
 		ft_list_sort.s			\
+		ft_list_remove_if.s		\
 
 NAME = libasm.a
 

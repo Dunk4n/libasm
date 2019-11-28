@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 08:58:51 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/27 21:53:06 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/28 11:18:24 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,12 @@ t_list	*ft_create_elem(void *data);
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
+void	ft_list_remove_if(t_list **begin_list, void *data_ref,
+int (*cmp)(), void (*free_fct)(void *));
 
 void	op(void)
 {
-	printf("11111111111111111\n");
-}
-
-int	oui(const char *a, const char *b)
-{
-	int i = 0;
-
-	printf("AAAAAAAAAAAAAA\n");
-	printf("%p, %p\n", a, b);
-	i = strcmp(a, b);
-	printf("BBBBBBBBBBBB\n");
-	return (0);
+	printf("op\n");
 }
 
 int		main(int ac, char **av)
@@ -59,13 +50,18 @@ int		main(int ac, char **av)
 	a = NULL;
 
 	ft_list_push_front(&a, strdup("5"));
+	printf("5 %p, %p\n", a, a->data);
 	ft_list_push_front(&a, strdup("1"));
+	printf("1 %p, %p\n", a, a->data);
 	ft_list_push_front(&a, strdup("3"));
+	printf("3 %p, %p\n", a, a->data);
 	ft_list_push_front(&a, strdup("2"));
+	printf("2 %p, %p\n", a, a->data);
 	ft_list_push_front(&a, strdup("4"));
+	printf("4 %p, %p\n\n", a, a->data);
 
-	printf("A\n");
-	ft_list_sort(&a, &oui);
+	printf("A, %p, %p, %p\n\n", &a, &strcmp, &free);
+	ft_list_remove_if(&a, "a", &strcmp, &free);
 	printf("B\n");
 	while (a)
 	{
