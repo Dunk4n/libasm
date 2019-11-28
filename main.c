@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 08:58:51 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/28 11:18:24 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/28 12:49:58 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,17 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)());
 void	ft_list_remove_if(t_list **begin_list, void *data_ref,
 int (*cmp)(), void (*free_fct)(void *));
 
+int hh = 0;
 void	op(void)
 {
-	printf("op\n");
+	printf("op%d\n", hh++);
+}
+
+void	free_moi(void *ptr)
+{
+	printf("OOOO\n");
+	free(ptr);
+	printf("PPPP\n");
 }
 
 int		main(int ac, char **av)
@@ -49,15 +57,15 @@ int		main(int ac, char **av)
 	t_list	*a;
 	a = NULL;
 
-	ft_list_push_front(&a, strdup("5"));
+	ft_list_push_front(&a, strdup("1"));
 	printf("5 %p, %p\n", a, a->data);
 	ft_list_push_front(&a, strdup("1"));
 	printf("1 %p, %p\n", a, a->data);
-	ft_list_push_front(&a, strdup("3"));
+	ft_list_push_front(&a, strdup("a"));
 	printf("3 %p, %p\n", a, a->data);
-	ft_list_push_front(&a, strdup("2"));
+	ft_list_push_front(&a, strdup("1"));
 	printf("2 %p, %p\n", a, a->data);
-	ft_list_push_front(&a, strdup("4"));
+	ft_list_push_front(&a, strdup("a"));
 	printf("4 %p, %p\n\n", a, a->data);
 
 	printf("A, %p, %p, %p\n\n", &a, &strcmp, &free);
