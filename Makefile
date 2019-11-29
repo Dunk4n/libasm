@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/26 08:50:51 by niduches          #+#    #+#              #
-#    Updated: 2019/11/28 12:54:04 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/29 11:27:58 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -fomit-frame-pointer
 
 NASM = nasm
-NASMFLAGS = -f macho64 #elf64
+NASMFLAGS = -g -f macho64 #elf64
 
 SRC =	ft_strlen.s				\
 		ft_strcpy.s				\
@@ -40,8 +40,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(LIB) $(NAME) $(OBJ)
 
-test: all
-	$(CC) $(CFLAGS) main.c $(NAME)
+test: re
+	rm -f a.out
+	$(CC) -g $(CFLAGS) main.c $(NAME)
 
 %.o: %.s
 	$(NASM) $(NASMFLAGS) -o $@ $<

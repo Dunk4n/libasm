@@ -2,6 +2,14 @@
 extern _free
 extern _free_moi
 extern _op
+
+global _test
+_test:
+	sub rsp, 8
+	call _free
+	add rsp, 8
+	ret
+
 global _ft_list_remove_if
 
 ft_list_remove_if_error:
@@ -22,13 +30,13 @@ _ft_list_remove_if:
 	cmp rcx, 0
 	jz ft_list_remove_if_error
 
-	push rbx	; next
-	push r8		; tmp
+	push qword rbx	; next
+	push qword r8		; tmp
 
 ft_list_remove_if_while_cond:
 	cmp qword [rdi], 0
 	jz ft_list_remove_if_end
-	push rdi
+	push qword rdi
 	mov r8, qword [rdi]
 	mov rdi, qword [r8]
 	call rdx
@@ -39,23 +47,20 @@ ft_list_remove_if_while:
 	mov rbx, qword [rdi]
 	mov r8, qword [rbx + 8]
 	mov qword [rdi], r8
-	push rdi
-	push rsi
-	push rcx
+	push qword rdi
+	push qword rsi
+	push qword rcx
+
+;	sub rsp, 8
 
 	mov rdi, qword [rbx]
-	call _free; rcx
+	call _free ; rcx
+
+;	add rsp, 8
+
 	mov rcx, 0
 	mov rdi, rbx
 	call _free
-
-	push rdi
-	push rsi
-	push rax
-	call _op
-	pop rdi
-	pop rsi
-	pop rax
 
 	pop rcx
 	pop rsi
@@ -99,3 +104,13 @@ ft_list_remove_if_if:
 
 	pop r9
 	jmp ft_list_remove_if_if_return
+
+jump_end:
+	mov rax, rsp
+	pop rcx
+	pop rsi
+	pop rdi
+	pop r8
+	pop rbx
+	ret
+

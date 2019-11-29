@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 08:58:51 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/28 12:49:58 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/29 11:57:17 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct		s_list
 }					t_list;
 
 int		ft_strlen(char *str);
-int		test(void);
 char	*ft_strcpy(char *dst, const char *src);
 int		ft_strcmp(const char *s1, const char *s2);
 ssize_t	ft_write(int fd, const void *buf, size_t nbyte);
@@ -34,22 +33,24 @@ t_list	*ft_create_elem(void *data);
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
 void	ft_list_sort(t_list **begin_list, int (*cmp)());
-void	ft_list_remove_if(t_list **begin_list, void *data_ref,
+void	*ft_list_remove_if(t_list **begin_list, void *data_ref,
 int (*cmp)(), void (*free_fct)(void *));
 
 int hh = 0;
 void	op(void)
 {
-	printf("op%d\n", hh++);
+	printf("op\n");
 }
 
-void	free_moi(void *ptr)
+void	free_moi(void)
 {
-	printf("OOOO\n");
-	free(ptr);
-	printf("PPPP\n");
+	puts("op\n");
+	//printf("%p\n", ptr);
+	//free(ptr);
+	//printf("%p\n", ptr);
 }
 
+void	*test(void *ptr);
 int		main(int ac, char **av)
 {
 	(void)ac;
@@ -57,6 +58,9 @@ int		main(int ac, char **av)
 	t_list	*a;
 	a = NULL;
 
+//	void *ptrr = strdup("abc");
+//	test(ptrr);
+//	return (0);
 	ft_list_push_front(&a, strdup("1"));
 	printf("5 %p, %p\n", a, a->data);
 	ft_list_push_front(&a, strdup("1"));
@@ -69,8 +73,10 @@ int		main(int ac, char **av)
 	printf("4 %p, %p\n\n", a, a->data);
 
 	printf("A, %p, %p, %p\n\n", &a, &strcmp, &free);
-	ft_list_remove_if(&a, "a", &strcmp, &free);
+	void *ptr;
+	ptr = ft_list_remove_if(&a, "a", &strcmp, &free);
 	printf("B\n");
+	printf("%llu, %llu\n", (unsigned long long)ptr, (unsigned long long)ptr % 16);
 	while (a)
 	{
 		printf("data = %s\n", a->data);
