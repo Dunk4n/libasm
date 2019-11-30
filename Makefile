@@ -6,11 +6,10 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/26 08:50:51 by niduches          #+#    #+#              #
-#    Updated: 2019/11/30 15:52:50 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/30 16:54:02 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RM = rm -f
 LIB = ar rcs
 
 CC = gcc
@@ -49,10 +48,10 @@ bonus: all $(OBJB)
 	$(NASM) $(NASMFLAGS) -o $@ $<
 
 clean:
-	$(RM) $(OBJ)
-	$(RM) $(OBJB)
+	rm -f $(OBJ)
+	rm -f $(OBJB)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all

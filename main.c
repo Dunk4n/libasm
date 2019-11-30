@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 08:58:51 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/30 16:14:43 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/30 16:35:02 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		main(int ac, char **av)
 		char a[50] = "ABC";
 		char b[50] = "abc";
 
-		printf("ft_strcpy:\n");
+		printf("\nft_strcpy:\n");
 		printf("source [%s], dest [%s]\n", a, b);
 		printf("before [%s]", b);
 		printf(", after [%s]\n", ft_strcpy(b, a));
@@ -94,10 +94,10 @@ int		main(int ac, char **av)
 	}
 	if (!strcmp(av[1], "ft_strcmp") || !strcmp(av[1], "all"))
 	{
-		char a[50] = "ABC";
-		char b[50] = "abc";
+		char a[50] = "abc";
+		char b[50] = "ABC";
 		
-		printf("ft_strcmp:\n");
+		printf("\nft_strcmp:\n");
 		printf("[%s], [%s], %d\n", a, b, ft_strcmp(a, b));
 		strcpy(a, "0123456789");
 		strcpy(b, "0123456789");
