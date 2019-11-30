@@ -4,17 +4,20 @@ global _ft_strcmp
 _ft_strcmp:
 	xor rcx, rcx
 	xor rax, rax
+	xor rdx, rdx
 ft_strcmp_loop:
-	mov cl, byte [rdi]
-	cmp ecx, dword [rsi]
+	mov al, [rdi]
+	mov cl, [rsi]
+	cmp al, cl
 	jnz ft_strcmp_end
-	cmp ecx, 0
+	cmp cl, 0
 	jz ft_strcmp_end
 	inc rdi
 	inc rsi
 	jmp ft_strcmp_loop
 
 ft_strcmp_end:
-	sub ecx, dword [rsi]
-	mov eax, ecx
+	sub ax, cx
+	cwde
+	cdqe
 	ret

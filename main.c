@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 08:58:51 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/30 16:35:02 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/30 17:42:13 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ int		main(int ac, char **av)
 {
 	if (ac != 2)
 		return (1);
-	if (!strcmp(av[1], "ft_strlen") || !strcmp(av[1], "all"))
+	if (!strncmp(av[1], "ft_strlen", ft_strlen("ft_strlen")) || !strcmp(av[1], "all"))
 	{
 		printf("ft_strlen:\n");
 		printf("[%s] -> %d\n", "", ft_strlen(""));
 		printf("[%s] -> %d\n", "abc", ft_strlen("abc"));
 		printf("[%s] -> %d\n", "abcdefghijklmnopqrstuvwxyz", ft_strlen("abcdefghijklmnopqrstuvwxyz"));
 	}
-	if (!strcmp(av[1], "ft_strcpy") || !strcmp(av[1], "all"))
+	if (!strncmp(av[1], "ft_strcpy", strlen("ft_strcpy")) || !strcmp(av[1], "all"))
 	{
 		char a[50] = "ABC";
 		char b[50] = "abc";
@@ -92,18 +92,40 @@ int		main(int ac, char **av)
 		printf("before [%s]", b);
 		printf(", after [%s]\n", ft_strcpy(b, a));
 	}
-	if (!strcmp(av[1], "ft_strcmp") || !strcmp(av[1], "all"))
+	if (!strncmp(av[1], "ft_strcmp", strlen("ft_strcmp")) || !strcmp(av[1], "all"))
 	{
-		char a[50] = "abc";
-		char b[50] = "ABC";
+		char a[50] = "a";
+		char b[50] = "ab";
 		
 		printf("\nft_strcmp:\n");
-		printf("[%s], [%s], %d\n", a, b, ft_strcmp(a, b));
+		printf("[%s], [%s], %d | ft_strcmp\n", a, b, ft_strcmp(a, b));
+		printf("[%s], [%s], %d | strcmp\n", a, b, strcmp(a, b));
 		strcpy(a, "0123456789");
 		strcpy(b, "0123456789");
-		printf("[%s], [%s], %d\n", a, b, ft_strcmp(a, b));
+		printf("[%s], [%s], %d | ft_strcmp\n", a, b, ft_strcmp(a, b));
+		printf("[%s], [%s], %d | strcmp\n", a, b, strcmp(a, b));
 	}
-	if (ac > 1 && strcmp(av[1], "bonus"))
-		bonus();
+	if (!strncmp(av[1], "ft_write", strlen("ft_write")) || !strcmp(av[1], "all"))
+	{
+		printf("\nft_write:\n");
+		printf("| -> %zd\n", ft_write(1, "abc", 3));
+		printf("| -> %zd\n", ft_write(1, "0123456789", 5));
+	}
+	if (!strncmp(av[1], "ft_read", strlen("ft_read")) || !strcmp(av[1], "all"))
+	{
+		static char buff[50];
+
+		printf("\nft_read:\n");
+		printf("-> %zd, %s\n", ft_read(1, buff, 3), buff);
+	}
+	if (!strncmp(av[1], "ft_strdup", strlen("ft_strdup")) || !strcmp(av[1], "all"))
+	{
+		char *str = "dup";
+		char *tmp;
+		printf("\nft_strdup:\n");
+		tmp = ft_strdup(str);
+		printf("%s, %s", str, tmp);
+		free(tmp);
+	}
 	return (0);
 }
