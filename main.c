@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 08:58:51 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/29 11:57:17 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/30 05:51:52 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,14 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)());
 void	*ft_list_remove_if(t_list **begin_list, void *data_ref,
 int (*cmp)(), void (*free_fct)(void *));
 
-int hh = 0;
-void	op(void)
+int	mstrcmp(char *s1, char *s2)
 {
-	printf("op\n");
+	return (*s1 - *s2);
 }
-
-void	free_moi(void)
+void	mfree(void *ptr)
 {
-	puts("op\n");
-	//printf("%p\n", ptr);
-	//free(ptr);
-	//printf("%p\n", ptr);
+	free(ptr);
 }
-
-void	*test(void *ptr);
 int		main(int ac, char **av)
 {
 	(void)ac;
@@ -58,12 +51,9 @@ int		main(int ac, char **av)
 	t_list	*a;
 	a = NULL;
 
-//	void *ptrr = strdup("abc");
-//	test(ptrr);
-//	return (0);
 	ft_list_push_front(&a, strdup("1"));
 	printf("5 %p, %p\n", a, a->data);
-	ft_list_push_front(&a, strdup("1"));
+	ft_list_push_front(&a, strdup("a"));
 	printf("1 %p, %p\n", a, a->data);
 	ft_list_push_front(&a, strdup("a"));
 	printf("3 %p, %p\n", a, a->data);
@@ -72,11 +62,11 @@ int		main(int ac, char **av)
 	ft_list_push_front(&a, strdup("a"));
 	printf("4 %p, %p\n\n", a, a->data);
 
-	printf("A, %p, %p, %p\n\n", &a, &strcmp, &free);
+	printf("A, %p, %p, %p\n\n", a, &strcmp, &(a));
 	void *ptr;
-	ptr = ft_list_remove_if(&a, "a", &strcmp, &free);
-	printf("B\n");
-	printf("%llu, %llu\n", (unsigned long long)ptr, (unsigned long long)ptr % 16);
+	ptr = ft_list_remove_if(&a, "a", &strcmp, &mfree);
+	printf("B%lld, %lld, %p\n", (const long long)ptr, (const long long)ptr % 16, ptr);
+	//printf("exit: %llu, %p\n", (unsigned long long)ptr, ptr);
 	while (a)
 	{
 		printf("data = %s\n", a->data);
