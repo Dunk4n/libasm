@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 08:58:51 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/30 18:02:38 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/30 20:31:11 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ int		main(int ac, char **av)
 		printf("\nft_atoi_base:\n");
 		printf("nb: [%s], base: %s\n", "fff", "0123456789abcdef");
 		printf("-> %d\n", ft_atoi_base("fff", "0123456789abcdef"));
-		printf("nb: [%s], base: %s\n", "  --+-101", "01");
-		printf("-> %d\n", ft_atoi_base("  --+-101", "01"));
+		printf("nb: [%s], base: %s\n", "413", "314");
+		printf("-> %d\n", ft_atoi_base("413", "314"));
 	}
 	if (!strncmp(av[1], "bonus", strlen("bonus")) || !strcmp(av[1], "all"))
 	{

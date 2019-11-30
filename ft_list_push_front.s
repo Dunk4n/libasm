@@ -31,6 +31,8 @@ _ft_list_push_front:
 	call _ft_create_elem
 
 	pop rdi
+	cmp rax, 0
+	jz ft_list_push_front_end
 
 	add rax, 8
 
