@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 08:58:51 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/30 17:42:13 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/30 18:02:38 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,9 @@ void	*ft_list_sort(t_list **begin_list, int (*cmp)());
 void	ft_list_remove_if(t_list **begin_list, void *data_ref,
 int (*cmp)(), void (*free_fct)(void *));
 
-void	bonus(void)
+void	display_lst(t_list *a)
 {
-	t_list	*a;
-	a = NULL;
-
-//	ft_list_push_front(NULL, strdup("5"));
-//	printf("%s %p, %p, %p\n", a->data, a, a->data, a->next);
-//	ft_list_push_front(&a, strdup("4"));
-//	printf("%s %p, %p\n", a->data, a, a->data);
-//	ft_list_push_front(&a, strdup("1"));
-//	printf("%s %p, %p\n", a->data, a, a->data);
-//	ft_list_push_front(&a, strdup("2"));
-//	printf("%s %p, %p\n", a->data, a, a->data);
-//	ft_list_push_front(&a, NULL/*strdup("3")*/);
-//	printf("%s %p, %p\n\n", a->data, a, a->data);
-
-//	int i = ft_list_size(a);
-//printf("B%p, %lld, %lld\n", ptr, (unsigned long long)ptr, (unsigned long long)ptr % 16);
+	printf("list:\n");
 	while (a)
 	{
 		printf("data = %s\n", a->data);
@@ -120,12 +105,39 @@ int		main(int ac, char **av)
 	}
 	if (!strncmp(av[1], "ft_strdup", strlen("ft_strdup")) || !strcmp(av[1], "all"))
 	{
-		char *str = "dup";
+		char *str = "abc";
 		char *tmp;
 		printf("\nft_strdup:\n");
 		tmp = ft_strdup(str);
-		printf("%s, %s", str, tmp);
+		printf("[%s] -> [%s]\n", str, tmp);
 		free(tmp);
+	}
+	if (!strncmp(av[1], "ft_atoi_base", strlen("ft_atoi_base")) || !strcmp(av[1], "all"))
+	{
+		printf("\nft_atoi_base:\n");
+		printf("nb: [%s], base: %s\n", "fff", "0123456789abcdef");
+		printf("-> %d\n", ft_atoi_base("fff", "0123456789abcdef"));
+		printf("nb: [%s], base: %s\n", "  --+-101", "01");
+		printf("-> %d\n", ft_atoi_base("  --+-101", "01"));
+	}
+	if (!strncmp(av[1], "bonus", strlen("bonus")) || !strcmp(av[1], "all"))
+	{
+		t_list *a = NULL;
+		printf("\nft_list_push_front:\n");
+		ft_list_push_front(&a, ft_strdup("1"));
+		ft_list_push_front(&a, ft_strdup("3"));
+		ft_list_push_front(&a, ft_strdup("2"));
+		display_lst(a);
+		printf("\nft_list_size:\nlist size = %d\n", ft_list_size(a));
+		ft_list_sort(&a, &strcmp);
+		printf("\nft_list_sort:\n");
+		display_lst(a);
+		printf("\nft_list_remove_if:\n");
+		printf("rm 2\n");
+		ft_list_remove_if(&a, "2", &strcmp, &free);
+		display_lst(a);
+		ft_list_remove_if(&a, "1", &strcmp, &free);
+		ft_list_remove_if(&a, "3", &strcmp, &free);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/26 08:50:51 by niduches          #+#    #+#              #
-#    Updated: 2019/11/30 16:54:02 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/30 17:48:57 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra
 
 NASM = nasm
-NASMFLAGS = -f macho64 #elf64
+NASMFLAGS = -f macho64
 
 SRC =	ft_strlen.s				\
 		ft_strcpy.s				\
@@ -42,7 +42,7 @@ $(NAME): $(OBJ)
 	$(LIB) $(NAME) $(OBJ)
 
 bonus: all $(OBJB)
-	$(LIB) $(NAME) $(OBJ)
+	$(LIB) $(NAME) $(OBJ) $(OBJB)
 
 %.o: %.s
 	$(NASM) $(NASMFLAGS) -o $@ $<

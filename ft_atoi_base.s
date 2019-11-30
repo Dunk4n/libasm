@@ -1,19 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_atoi_base.s                                     :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/27 16:34:42 by niduches          #+#    #+#              #
-#    Updated: 2019/11/27 16:35:27 by niduches         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 global _ft_atoi_base
 
 ;int	good_arg(char *)
-_good_arg:						; check if the base is good and return his length
+_good_arg:						;check if the base is good and return his length
 	push rsi
 
 	cmp rsi, 0
